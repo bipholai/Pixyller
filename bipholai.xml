@@ -618,13 +618,9 @@ Copyright (c) 2014 Daniel Eden
                                 <b:include name='description'/>
                             </b:includable>
                             <b:includable id='description'>
-                                <div class='descriptionwrapper'>
-                                    <p class='description'>
-                                        <span>
-                                            <data:description/>
-                                        </span>
-                                    </p>
-                                </div>
+                                <span style="display: none;">
+                                    <data:description/>
+                                </span>
                             </b:includable>
                             <b:includable id='title'>
                                 <a expr:href='data:blog.homepageUrl' class="site-title">
@@ -636,13 +632,11 @@ Copyright (c) 2014 Daniel Eden
                     <nav class="site-nav right">
                         <a href="/about/">About</a>
                         <a href="/contact/">Contact</a>
-
                     </nav>
                     <div class="clearfix"></div>
                 </div>
             </div>
         </header>
-
         <footer class="footer">
             <div class="p2 wrap">
                 <div class="measure mt1 center">
