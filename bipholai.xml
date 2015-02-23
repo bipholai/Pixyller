@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml'
+<html xmlns='http://www.w3.org/1999/xhtml'
       xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data'
       xmlns:expr='http://www.google.com/2005/gml/expr'>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <b:include data='blog' name='all-head-content'/>
         <title>
             <b:if cond='data:blog.pageType == &quot;index&quot;'>
@@ -607,56 +606,43 @@ Copyright (c) 2014 Daniel Eden
 .highlight .lineno { color: #aaa; }
 
    ]]></b:skin>
-        <b:template-skin><![CDATA[   ]]></b:template-skin>
     </head>
     <body>
-        <div class="site-wrap">
-            <header class="site-header px2 px-responsive">
-                <div class="mt2 wrap">
-                    <div class="measure">
-                        <b:section class='header' id='header' maxwidgets='1' showaddelement='yes'>
-                            <b:widget id='Header1' locked='true' title='Pixyller (Header)' type='Header'>
-                                <b:includable id='main'>
-                                    <b:include name='title'/>
-                                    <b:include name='description'/>
-                                </b:includable>
-                                <b:includable id='description'>
-                                    <div class='descriptionwrapper'>
-                                        <p class='description'>
-                                            <span>
-                                                <data:description/>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </b:includable>
-                                <b:includable id='title'>
-                                    <a class="site-title" expr:href='data:blog.homepageUrl'>
-                                        <data:title/>
-                                    </a>
-                                </b:includable>
-                            </b:widget>
-                        </b:section>
-
-                        <nav class="site-nav right">
-                            <a href="/about/">About</a>
-                            <a href="/contact/">Contact</a>
-                        </nav>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </header>
-            <div class="post p2 p-responsive wrap" role="main">
+        <header class="site-header px2 px-responsive">
+            <div class="mt2 wrap">
                 <div class="measure">
-                    <div class="home">
-                        <div class="posts">
-                            <b:section class='mainpost' id='mainpost' showaddelement='no'>
-                                <b:widget id='Blog1' locked='true' title='Bài đăng trên Blog' type='Blog'/>
-                            </b:section>
-                        </div>
-                    </div>
+                    <b:section class='header' id='header' maxwidgets='1' showaddelement='yes'>
+                        <b:widget id='Header1' locked='true' title='Enpine Blog (Header)' type='Header'>
+                            <b:includable id='main'>
+                                <b:include name='title'/>
+                                <b:include name='description'/>
+                            </b:includable>
+                            <b:includable id='description'>
+                                <div class='descriptionwrapper'>
+                                    <p class='description'>
+                                        <span>
+                                            <data:description/>
+                                        </span>
+                                    </p>
+                                </div>
+                            </b:includable>
+                            <b:includable id='title'>
+                                <a expr:href='data:blog.homepageUrl' class="site-title">
+                                    <data:title/>
+                                </a>
+                            </b:includable>
+                        </b:widget>
+                    </b:section>
+                    <nav class="site-nav right">
+                        <a href="/about/">About</a>
+                        <a href="/contact/">Contact</a>
+
+                    </nav>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-        </div>
+        </header>
+
         <footer class="footer">
             <div class="p2 wrap">
                 <div class="measure mt1 center">
@@ -668,6 +654,6 @@ Copyright (c) 2014 Daniel Eden
                 </div>
             </div>
         </footer>
+        <b:include data='blog' name='google-analytics'/>
     </body>
-
 </html>
