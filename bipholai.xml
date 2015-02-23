@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+    <head>
+        <b:include data='blog' name='all-head-content'/>
+        <title>
+            <b:if cond='data:blog.pageType == &quot;index&quot;'>
+                <data:blog.pageTitle/>
+                <b:else/>
+                <b:if cond='data:blog.pageType != &quot;error_page&quot;'>
+                    <data:blog.pageName/> | <data:blog.title/>
+                    <b:else/>
+                    Page Not Found | <data:blog.title/>
+                </b:if>
+            </b:if>
+        </title>
+        <b:skin><![CDATA[
+
+body {
+background:white;
+color:black;
+}
+#Navbar1 {dispaly:none!important;}
+]]></b:skin>
+    </head>
+    <body>
+        <b:section class='navbar' id='navbar' maxwidgets='1' showaddelement='no'>
+            <b:widget id='Navbar1' locked='true' title='Navbar' type='Navbar'/>
+        </b:section>
+    </body>
+</html>
