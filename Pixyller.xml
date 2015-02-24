@@ -1377,26 +1377,22 @@ Copyright (c) 2014 Daniel Eden
                                                 <b:if cond='data:blog.pageType == &quot;index&quot;'>
                                                     <p class="post-meta">
                                                         <b:if cond='data:top.showTimestamp'>
-                                                            <b:if cond='data:post.url'>
-                                                                <a expr:href='data:post.url'>
-                                                                    <data:post.timestamp/>
-                                                                </a>
-                                                            </b:if>
+                                                            <data:post.timestamp/>
                                                         </b:if>
-                                                    </p>
-                                                </b:if>
-                                                <b:if cond='data:blog.pageType == &quot;index&quot;'>
-                                                    <div class='item-label'>
                                                         <b:if cond='data:post.labels'>
+                                                            <span>-</span>
                                                             <b:loop values='data:post.labels'
                                                                     var='label'>
                                                                 <a expr:href='data:label.url' rel='tag'>
                                                                     <data:label.name/>
                                                                 </a>
+                                                                <span>.</span>
                                                                 <b:if cond='data:label.isLast != &quot;false&quot;'/>
                                                             </b:loop>
                                                         </b:if>
-                                                    </div>
+                                                    </p>
+                                                </b:if>
+                                                <b:if cond='data:blog.pageType == &quot;index&quot;'>
                                                     <h2 class='h2 post-title'>
                                                         <a expr:href='data:post.url'>
                                                             <data:post.title/>
@@ -1404,7 +1400,7 @@ Copyright (c) 2014 Daniel Eden
                                                     </h2>
 
                                                     <p class='post-summary'
-                                                         expr:id='&quot;summary&quot; + data:post.id'>
+                                                       expr:id='&quot;summary&quot; + data:post.id'>
                                                         <data:post.body/>
                                                     </p>
 
