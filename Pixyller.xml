@@ -348,7 +348,7 @@ body { font-family: "Source Sans Pro", "PT Serif", Georgia, "Times New Roman", s
 
 html, body { height: 100%; }
 
-img { max-width: 100%;display:block;margin:auto; }
+img { max-width: 100%;display:block;margin:20px auto 5px; }
 
 .site-wrap { min-height: 100%; margin-bottom: -100px; }
 
@@ -605,6 +605,14 @@ Copyright (c) 2014 Daniel Eden
 .highlight .gc { color: #999; background-color: #EAF2F5; }
 
 .highlight .lineno { color: #aaa; }
+.share-story-container{display:block;min-height:41px;border-top:5px solid #F1F1F1;width:100%;position:relative;margin:0;padding:4% 0 0}
+.share-story-container ul{list-style:none;text-align:center;margin:0;padding:0}
+.share-story-container ul li{text-align:center;display:inline-block;margin:0 10px}
+.tweet,.fb-tips,.googleplus{color:#666;border:1px solid #CCC;font-family:helvetica;-webkit-transition:.07s ease-in;-moz-transition:.07s ease-in;-o-transition:.07s ease-in;transition:.07s ease-in;padding:10px 25px}
+.tweet:hover,.fb-tips:hover,.googleplus:hover{color:#FFF}
+.tweet.tips:hover{background:#00A0D1;border:1px solid #00A0D1}
+.fb-tips:hover{background:#3B5998;border:1px solid #3B5998}
+.googleplus.tips:hover{background:#DA4834;border:1px solid #DA4834}
 
    ]]></b:skin>
     </head>
@@ -1408,21 +1416,21 @@ Copyright (c) 2014 Daniel Eden
                                             </b:if>
                                             <b:if cond='data:blog.pageType == &quot;item&quot;'>
                                                 <div class='post-footer'>
-                                                    <div class='post-footer-line post-footer-line-1'>
+                                                    <div class='post-footer-line'>
                                                         <div class='share-story-container'>
                                                             <ul class='share-story'>
                                                                 <li>
                                                                     <a class='tweet tips' data-title='Twitter'
                                                                        expr:href='&quot;http://twitter.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
                                                                        onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Tweet It
+                                                                       rel='nofollow'>Twitter
                                                                     </a>
                                                                 </li>
                                                                 <li>
                                                                     <a class='fb-tips' data-title='Facebook'
                                                                        expr:href='&quot;http://www.facebook.com/sharer.php?u=&quot; + data:post.url + &quot;&amp;title=&quot;+ data:post.title'
                                                                        onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Like It
+                                                                       rel='nofollow'>Facebook
                                                                     </a>
                                                                 </li>
                                                                 <li>
@@ -1432,60 +1440,7 @@ Copyright (c) 2014 Daniel Eden
                                                                        rel='nofollow'>Google+
                                                                     </a>
                                                                 </li>
-
-                                                                <li>
-                                                                    <a class='linkedin tips' data-title='Linkedin'
-                                                                       expr:href='&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title + &quot;&amp;source=&quot; + data:blog.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'>
-                                                                        Linkedin
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a class='pin-it tips' data-title='Pin it'
-                                                                       expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url + &quot;&amp;media=&quot; + data:post.thumbnailUrl + &quot;&amp;description=&quot; + data:post.snippet'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Pin it
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a class='stumble tips' data-title='Stumle-Upon'
-                                                                       expr:href='&quot;http://www.stumbleupon.com/submit?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Stumble
-                                                                    </a>
-                                                                </li>
-
                                                             </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class='post-footer-line post-footer-line-2'>
-                                                        <div class='author-profile' itemprop='author'
-                                                             itemscope='itemscope'
-                                                             itemtype='http://schema.org/Person'>
-                                                            <b:if cond='data:post.authorPhoto.url'>
-                                                                <a expr:href='data:post.authorProfileUrl'>
-                                                                    <div class='auhtor-image'>
-                                                                        <img expr:src='data:post.authorPhoto.url'
-                                                                             itemprop='image' width='100px'/>
-                                                                    </div>
-                                                                </a>
-                                                            </b:if>
-                                                            <div>
-                                                                <a class='g-profile'
-                                                                   expr:href='data:post.authorProfileUrl'
-                                                                   itemprop='url' rel='author'
-                                                                   title='author profile'>
-                                                                    <span itemprop='name'>
-                                                                        <data:post.author/>
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <p class='description' itemprop='description'>
-                                                                <data:post.authorAboutMe/>
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
