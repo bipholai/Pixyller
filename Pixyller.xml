@@ -1386,8 +1386,9 @@ Copyright (c) 2014 Daniel Eden
                                                                 <a expr:href='data:label.url' rel='tag'>
                                                                     <data:label.name/>
                                                                 </a>
-                                                                <span>.</span>
-                                                                <b:if cond='data:label.isLast != &quot;false&quot;'/>
+                                                                <b:if cond='data:label.isLast != &quot;true&quot;'>
+                                                                    <span>,</span>
+                                                                </b:if>
                                                             </b:loop>
                                                         </b:if>
                                                     </p>
