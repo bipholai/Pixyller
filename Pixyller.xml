@@ -645,12 +645,8 @@ Copyright (c) 2014 Daniel Eden
                             <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
                                 <b:includable id='main' var='top'>
                                     <b:if cond='data:mobile == &quot;false&quot;'>
-
-                                        <!-- posts -->
                                         <div class='blog-posts hfeed'>
-
                                             <b:include data='top' name='status-message'/>
-
                                             <data:defaultAdStart/>
                                             <b:loop values='data:posts' var='post'>
                                                 <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
@@ -1323,47 +1319,63 @@ Copyright (c) 2014 Daniel Eden
                                 </b:includable>
                                 <b:includable id='post' var='post'>
                                     <div class='post hentry'>
-                                        <div class='inner'>
-                                            <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                                                <b:if cond='data:post.title'>
-                                                    <h1 class='post-title entry-title'>
-                                                        <b:if cond='data:post.link'>
-                                                            <a expr:href='data:post.link'>
-                                                                <data:post.title/>
-                                                            </a>
-                                                            <b:else/>
-                                                            <b:if cond='data:post.url'>
-                                                                <b:if cond='data:blog.url != data:post.url'>
-                                                                    <a expr:href='data:post.url'>
-                                                                        <data:post.title/>
-                                                                    </a>
-                                                                    <b:else/>
+                                        <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                                            <b:if cond='data:post.title'>
+                                                <h1 class='post-title entry-title'>
+                                                    <b:if cond='data:post.link'>
+                                                        <a expr:href='data:post.link'>
+                                                            <data:post.title/>
+                                                        </a>
+                                                        <b:else/>
+                                                        <b:if cond='data:post.url'>
+                                                            <b:if cond='data:blog.url != data:post.url'>
+                                                                <a expr:href='data:post.url'>
                                                                     <data:post.title/>
-                                                                </b:if>
+                                                                </a>
                                                                 <b:else/>
                                                                 <data:post.title/>
                                                             </b:if>
+                                                            <b:else/>
+                                                            <data:post.title/>
                                                         </b:if>
-                                                    </h1>
-                                                </b:if>
+                                                    </b:if>
+                                                </h1>
                                             </b:if>
+                                        </b:if>
 
-                                            <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                                                <div class='post-header'>
-                                                    <span class='post-label'>
-                                                        <b:if cond='data:post.labels'>
-                                                            <b:loop values='data:post.labels' var='label'>
-                                                                <div>
-                                                                    <a expr:href='data:label.url' rel='tag'>
-                                                                        <data:label.name/>
-                                                                    </a>
-                                                                </div>
-                                                                <b:if cond='data:label.isLast != &quot;false&quot;'/>
-                                                            </b:loop>
+                                        <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                                            <div class='post-header'>
+                                                <span class='post-label'>
+                                                    <b:if cond='data:post.labels'>
+                                                        <b:loop values='data:post.labels' var='label'>
+                                                            <div>
+                                                                <a expr:href='data:label.url' rel='tag'>
+                                                                    <data:label.name/>
+                                                                </a>
+                                                            </div>
+                                                            <b:if cond='data:label.isLast != &quot;false&quot;'/>
+                                                        </b:loop>
+                                                    </b:if>
+                                                </span>
+
+                                                <span class='post-timestamp'>
+                                                    <b:if cond='data:top.showTimestamp'>
+                                                        <b:if cond='data:post.url'>
+                                                            <a expr:href='data:post.url'>
+                                                                <data:post.timestamp/>
+                                                            </a>
                                                         </b:if>
-                                                    </span>
+                                                    </b:if>
+                                                </span>
+                                            </div>
+                                        </b:if>
 
-                                                    <span class='post-timestamp'>
+                                        <div class='post-link' expr:id='data:post.id'>
+                                            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                                                <data:post.body/>
+                                                <b:else/>
+                                                <b:if cond='data:blog.pageType == &quot;index&quot;'>
+                                                    <p class="post-meta">
                                                         <b:if cond='data:top.showTimestamp'>
                                                             <b:if cond='data:post.url'>
                                                                 <a expr:href='data:post.url'>
@@ -1371,196 +1383,124 @@ Copyright (c) 2014 Daniel Eden
                                                                 </a>
                                                             </b:if>
                                                         </b:if>
-                                                    </span>
-                                                </div>
-                                            </b:if>
-
-                                            <div class='post-body entry-content' expr:id='data:post.id'>
-                                                <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                                                    <data:post.body/>
-                                                    <b:else/>
-                                                    <div class='body-post'>
-                                                        <b:if cond='data:blog.pageType == &quot;index&quot;'>
-                                                            <!-- post img -->
-                                                            <div class='entry-image'>
-                                                                <a expr:href='data:post.url'>
-                                                                    <script type='text/javascript'>
-                                                                        document.write(image_plugin(&quot;
-                                                                        <data:post.thumbnailUrl/>&quot;,&quot;
-                                                                        <data:post.title/>&quot;));
-                                                                    </script>
+                                                    </p>
+                                                </b:if>
+                                                <b:if cond='data:blog.pageType == &quot;index&quot;'>
+                                                    <div class='item-label'>
+                                                        <b:if cond='data:post.labels'>
+                                                            <b:loop values='data:post.labels'
+                                                                    var='label'>
+                                                                <a expr:href='data:label.url' rel='tag'>
+                                                                    <data:label.name/>
                                                                 </a>
-                                                            </div>
-                                                            <div class='entry-container'>
-
-                                                                <div class='item-label'>
-                                                                    <b:if cond='data:post.labels'>
-                                                                        <b:loop values='data:post.labels'
-                                                                                var='label'>
-                                                                            <a expr:href='data:label.url' rel='tag'>
-                                                                                <data:label.name/>
-                                                                            </a>
-                                                                            <b:if cond='data:label.isLast != &quot;false&quot;'/>
-                                                                        </b:loop>
-                                                                    </b:if>
-                                                                </div>
-
-                                                                <h2 class='post-title'>
-                                                                    <a expr:href='data:post.url'>
-                                                                        <data:post.title/>
-                                                                    </a>
-                                                                </h2>
-
-                                                                <div class='post-excerpt'
-                                                                     expr:id='&quot;summary&quot; + data:post.id'>
-                                                                    <data:post.body/>
-                                                                </div>
-                                                                <script type='text/javascript'>
-                                                                    createSummaryAndThumb(&quot;summary
-                                                                    <data:post.id/>&quot;);
-                                                                </script>
-                                                            </div>
-
-                                                            <b:else/>
-                                                            <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
-                                                                <data:post.body/>
-                                                            </b:if>
+                                                                <b:if cond='data:label.isLast != &quot;false&quot;'/>
+                                                            </b:loop>
                                                         </b:if>
                                                     </div>
+                                                    <h2 class='h2 post-title'>
+                                                        <a expr:href='data:post.url'>
+                                                            <data:post.title/>
+                                                        </a>
+                                                    </h2>
 
-                                                    <b:if cond='data:blog.pageType == &quot;index&quot;'>
-                                                        <div class='ft-tish'>
-                                                            <div class='ft-ftime'>
-                                                                <b:if cond='data:top.showTimestamp'>
-                                                                    <b:if cond='data:post.url'>
-                                                                        <a expr:href='data:post.url'>
-                                                                            <data:post.timestamp/>
-                                                                        </a>
-                                                                    </b:if>
-                                                                </b:if>
-                                                            </div>
-                                                            <div class='ft-fshare'>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a class='zocial-twitter'
-                                                                           data-title='Twitter'
-                                                                           expr:href='&quot;http://twitter.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
-                                                                           onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                           rel='nofollow'/>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class='zocial-facebook'
-                                                                           data-title='Facebook'
-                                                                           expr:href='&quot;http://www.facebook.com/sharer.php?u=&quot; + data:post.url + &quot;&amp;title=&quot;+ data:post.title'
-                                                                           onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                           rel='nofollow'/>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class='zocial-googleplus'
-                                                                           data-title='Google+'
-                                                                           expr:href='&quot;https://plus.google.com/u/0/share?url=&quot; + data:post.url'
-                                                                           onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                           rel='nofollow'/>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <p class='post-summary'
+                                                         expr:id='&quot;summary&quot; + data:post.id'>
+                                                        <data:post.body/>
+                                                    </p>
+
+                                                    <b:else/>
+                                                    <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+                                                        <data:post.body/>
                                                     </b:if>
-
-
                                                 </b:if>
-                                            </div>
-                                            <div style='clear: both;'/>
-                                            <!-- clear for photos floats -->
+
+
+                                            </b:if>
+                                        </div>
+                                        <b:if cond='data:blog.pageType == &quot;item&quot;'>
                                             <div class='post-footer'>
                                                 <div class='post-footer-line post-footer-line-1'>
-                                                    <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                                                        <div class='share-story-container'>
-                                                            <ul class='share-story'>
-                                                                <li>
-                                                                    <a class='tweet tips' data-title='Twitter'
-                                                                       expr:href='&quot;http://twitter.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Tweet It
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class='fb-tips' data-title='Facebook'
-                                                                       expr:href='&quot;http://www.facebook.com/sharer.php?u=&quot; + data:post.url + &quot;&amp;title=&quot;+ data:post.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Like It
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class='googleplus tips' data-title='Google+'
-                                                                       expr:href='&quot;https://plus.google.com/u/0/share?url=&quot; + data:post.url'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Google+
-                                                                    </a>
-                                                                </li>
+                                                    <div class='share-story-container'>
+                                                        <ul class='share-story'>
+                                                            <li>
+                                                                <a class='tweet tips' data-title='Twitter'
+                                                                   expr:href='&quot;http://twitter.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
+                                                                   rel='nofollow'>Tweet It
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class='fb-tips' data-title='Facebook'
+                                                                   expr:href='&quot;http://www.facebook.com/sharer.php?u=&quot; + data:post.url + &quot;&amp;title=&quot;+ data:post.title'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
+                                                                   rel='nofollow'>Like It
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class='googleplus tips' data-title='Google+'
+                                                                   expr:href='&quot;https://plus.google.com/u/0/share?url=&quot; + data:post.url'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
+                                                                   rel='nofollow'>Google+
+                                                                </a>
+                                                            </li>
 
-                                                                <li>
-                                                                    <a class='linkedin tips' data-title='Linkedin'
-                                                                       expr:href='&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title + &quot;&amp;source=&quot; + data:blog.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'>
-                                                                        Linkedin
-                                                                    </a>
-                                                                </li>
+                                                            <li>
+                                                                <a class='linkedin tips' data-title='Linkedin'
+                                                                   expr:href='&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title + &quot;&amp;source=&quot; + data:blog.title'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'>
+                                                                    Linkedin
+                                                                </a>
+                                                            </li>
 
-                                                                <li>
-                                                                    <a class='pin-it tips' data-title='Pin it'
-                                                                       expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url + &quot;&amp;media=&quot; + data:post.thumbnailUrl + &quot;&amp;description=&quot; + data:post.snippet'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Pin it
-                                                                    </a>
-                                                                </li>
+                                                            <li>
+                                                                <a class='pin-it tips' data-title='Pin it'
+                                                                   expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url + &quot;&amp;media=&quot; + data:post.thumbnailUrl + &quot;&amp;description=&quot; + data:post.snippet'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
+                                                                   rel='nofollow'>Pin it
+                                                                </a>
+                                                            </li>
 
-                                                                <li>
-                                                                    <a class='stumble tips' data-title='Stumle-Upon'
-                                                                       expr:href='&quot;http://www.stumbleupon.com/submit?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
-                                                                       onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
-                                                                       rel='nofollow'>Stumble
-                                                                    </a>
-                                                                </li>
+                                                            <li>
+                                                                <a class='stumble tips' data-title='Stumle-Upon'
+                                                                   expr:href='&quot;http://www.stumbleupon.com/submit?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title'
+                                                                   onclick='window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;'
+                                                                   rel='nofollow'>Stumble
+                                                                </a>
+                                                            </li>
 
-                                                            </ul>
-                                                        </div>
-                                                    </b:if>
+                                                        </ul>
+                                                    </div>
                                                 </div>
 
                                                 <div class='post-footer-line post-footer-line-2'>
-                                                    <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                                                        <div class='author-profile' itemprop='author'
-                                                             itemscope='itemscope'
-                                                             itemtype='http://schema.org/Person'>
-                                                            <b:if cond='data:post.authorPhoto.url'>
-                                                                <a expr:href='data:post.authorProfileUrl'>
-                                                                    <div class='auhtor-image'>
-                                                                        <img expr:src='data:post.authorPhoto.url'
-                                                                             itemprop='image' width='100px'/>
-                                                                    </div>
-                                                                </a>
-                                                            </b:if>
-                                                            <div>
-                                                                <a class='g-profile'
-                                                                   expr:href='data:post.authorProfileUrl'
-                                                                   itemprop='url' rel='author'
-                                                                   title='author profile'>
-                                                                    <span itemprop='name'>
-                                                                        <data:post.author/>
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <p class='description' itemprop='description'>
-                                                                <data:post.authorAboutMe/>
-                                                            </p>
+                                                    <div class='author-profile' itemprop='author'
+                                                         itemscope='itemscope'
+                                                         itemtype='http://schema.org/Person'>
+                                                        <b:if cond='data:post.authorPhoto.url'>
+                                                            <a expr:href='data:post.authorProfileUrl'>
+                                                                <div class='auhtor-image'>
+                                                                    <img expr:src='data:post.authorPhoto.url'
+                                                                         itemprop='image' width='100px'/>
+                                                                </div>
+                                                            </a>
+                                                        </b:if>
+                                                        <div>
+                                                            <a class='g-profile'
+                                                               expr:href='data:post.authorProfileUrl'
+                                                               itemprop='url' rel='author'
+                                                               title='author profile'>
+                                                                <span itemprop='name'>
+                                                                    <data:post.author/>
+                                                                </span>
+                                                            </a>
                                                         </div>
-                                                    </b:if>
+                                                        <p class='description' itemprop='description'>
+                                                            <data:post.authorAboutMe/>
+                                                        </p>
+                                                    </div>
                                                 </div>
-
-                                                <div class='post-footer-line post-footer-line-3'></div>
                                             </div>
-                                        </div>
+                                        </b:if>
                                     </div>
                                 </b:includable>
                                 <b:includable id='postQuickEdit' var='post'>
