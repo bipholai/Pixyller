@@ -9,16 +9,24 @@
             <b:if cond='data:blog.pageType == &quot;index&quot;'>
                 <data:blog.pageTitle/>
                 <b:else/>
-                <b:if cond='data:blog.pageType != &quot;error_page&quot;'>
-                    <data:blog.pageName/>
-                    |
-                    <data:blog.title/>
-                    <b:else/>
-                    Page Not Found |
-                    <data:blog.title/>
-                </b:if>
+                <b:if cond='data:blog.pageType != &quot;error_page&quot;'><data:blog.pageName/> | <data:blog.title/><b:else/>Page Not Found | <data:blog.title/></b:if>
             </b:if>
         </title>
+        <link rel="author" href="https://plus.google.com/107807215611585435945"/>
+        <link rel="publisher" href="https://plus.google.com/107807215611585435945"/>
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:type" content="blog"/>
+        <meta property="og:title" expr:content='data:blog.title'/>
+        <meta property="og:description" expr:content='data:blog.metaDescription'/>
+        <meta property="og:url" expr:content='data:blog.homepageUrl'/>
+        <meta property="og:site_name" expr:content='data:blog.title'/>
+        <meta property="article:publisher" content="https://www.facebook.com/pages/TutSavecom/783344878391771"/>
+        <meta property="fb:admins" content="783344878391771"/>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:description" expr:content='data:blog.metaDescription'/>
+        <meta name="twitter:title" expr:content='data:blog.title'/>
+        <meta name="twitter:site" content="@BiPhoLai"/>
+        <meta name="twitter:domain" content="BiPhoLai"/>
 
         <b:if cond='data:blog.pageType == &quot;archive&quot;'>
             <meta content='noindex,noarchive' name='robots'/>
