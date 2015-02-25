@@ -19,6 +19,17 @@
                 </b:if>
             </b:if>
         </title>
+
+        <b:if cond='data:blog.pageType == &quot;archive&quot;'>
+            <meta content='noindex,noarchive' name='robots'/>
+        </b:if>
+        <b:if cond='data:blog.metaDescription != &quot;&quot;'>
+            <meta expr:content='data:blog.metaDescription' name='description'/>
+        </b:if>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+        <b:if cond='data:blog.url == data:blog.homepageUrl'>
+            <meta name="keywords" content="PHP, Symfony, Drupal, BiPhoLai, Developer"/>
+        </b:if>
         <b:skin><![CDATA[
 /*====================================
 Theme Name : Pixyller
