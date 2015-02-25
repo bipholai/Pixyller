@@ -60,8 +60,7 @@ Copyright (c) 2014 Daniel Eden
                             </b:widget>
                         </b:section>
                         <nav class="site-nav right">
-                            <a href="/about/">About</a>
-                            <a href="/contact/">Contact</a>
+                            <a href="/p/about.html">About</a>
                         </nav>
                         <div class="clearfix"></div>
                     </div>
@@ -281,6 +280,8 @@ Copyright (c) 2014 Daniel Eden
                         Crafted with ♡ by
                         <a href="http://bipholai.blogspot.com">BiPhoLai</a>
                         (<a href="https://twitter.com/BiPhoLai">@BiPhoLai</a>).
+                        <br/>
+                        Powered by Blogger.
                     </small>
                 </div>
             </div>
