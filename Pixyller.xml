@@ -60,7 +60,7 @@ Copyright (c) 2014 Daniel Eden
                 <div class="mt2 wrap">
                     <div class="measure">
                         <b:section class='header' id='header' maxwidgets='1' showaddelement='yes'>
-                            <b:widget id='Header1' locked='true' title='Enpine Blog (Header)' type='Header'>
+                            <b:widget id='Header1' locked='true' title='Pixyller Blog (Header)' type='Header'>
                                 <b:includable id='main'>
                                     <b:include name='title'/>
                                     <b:include name='description'/>
